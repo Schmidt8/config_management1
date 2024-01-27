@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ ansible_hostname }} - Nginx</title>
+</head>
+<body>
+    {% if ansible_hostname == 'm-web' %}
+        {{ custom_message }}
+    {% else %}
+        {{ default_index }}
+    {% endif %}
+</body>
+</html>

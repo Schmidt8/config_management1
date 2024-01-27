@@ -1,0 +1,33 @@
+---
+- name: Haladó Playbook Technikák
+  hosts: all
+  become: yes
+  vars:
+    - default_index: "<h1>Welcome to DevOps training!</h1>"
+    - custom_message: "<h1>Schmidt Attila</h1>"
+  
+  tasks:
+    - name: Telepítse az Nginx csomagot
+      package:
+        name: nginx
+        state: present
+      
+    - name: Írja át az index.html fájlt
+      template:
+        src: index.j2
+        dest: /usr/share/nginx/html/index.html
+      notify: Restart Nginx
+      
+    - name: Loop through list and create files
+      copy:
+        content: "{{ item.content }}"
+        dest: "/usr/share/nginx/html/{{ item.filename }}"
+      loop:
+        - { filename: 'file1.html', content: 'This is file 1' }
+        - { filename: 'file2.html', content: 'This is file 2' }
+      
+  handlers:
+    - name: Restart Nginx
+      service:
+        name: nginx
+        state: restarted

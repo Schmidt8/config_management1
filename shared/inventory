@@ -1,0 +1,4 @@
+[back-end-servers]
+ansible ansible_host=ansible ansible_port=22 ansible_user=ansible ansible_ssh_pass=ansible
+[front-end-servers]
+m-web ansible_host=m-web ansible_port=22 ansible_user=homework ansible_ssh_pass=homework
