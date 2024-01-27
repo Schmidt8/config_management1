@@ -38,3 +38,7 @@ print_line
 echo "Install sshpass"
 yum install sshpass -y
 
+# Install git
+print_line
+echo "Install git"
+yum install git -y
